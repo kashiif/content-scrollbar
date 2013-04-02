@@ -1,0 +1,11 @@
+content content-scrollbar chrome/content/
+
+resource content-scrollbar lib/
+
+locale	content-scrollbar	en-US	chrome/locale/en-US/
+
+skin	content-scrollbar	content-scrollbar-skin	chrome/skin/
+
+overlay chrome://browser/content/browser.xul	chrome://content-scrollbar/content/overlay_browser.xul
+
+overlay	chrome://navigator/content/navigator.xul	chrome://content-scrollbar/content/overlay_browser.xul

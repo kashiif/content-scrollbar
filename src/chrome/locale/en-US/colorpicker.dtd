@@ -1,0 +1,14 @@
+<!ENTITY rainbowpicker.title "Color Picker">
+<!ENTITY rainbowpicker.predef.label "Predefined colors:">
+<!ENTITY rainbowpicker.rgb.label "RGB">
+<!ENTITY rainbowpicker.hsb.label "HSB">
+<!ENTITY rainbowpicker.red.label "Red:">
+<!ENTITY rainbowpicker.green.label "Green:">
+<!ENTITY rainbowpicker.blue.label "Blue:">
+<!ENTITY rainbowpicker.hue.label "Hue:">
+<!ENTITY rainbowpicker.saturation.label "Saturation:">
+<!ENTITY rainbowpicker.brightness.label "Brightness:">
+<!ENTITY rainbowpicker.hexColor.label "Hex:">
+<!ENTITY rainbowpicker.nameColor.label "Name:">
+<!ENTITY rainbowpicker.toolbar.label "Rainbowpicker">
+<!ENTITY rainbowpicker.toolbar.tooltip "Open up the color picker dialog">

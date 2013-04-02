@@ -1,0 +1,30 @@
+<!ENTITY contentscrollbar.options.windowtitle	"Content Scrollbar Options">
+
+<!ENTITY contentscrollbar.common.btndefaultstatuslabel   "Enabled for new tabs">
+<!ENTITY contentscrollbar.common.btndefaultstatusaccesskey   "n">
+<!ENTITY contentscrollbar.common.btndefaultstatustooltip   "">
+
+<!ENTITY contentscrollbar.common.activetabmenulabel   "Enable on this tab">
+<!ENTITY contentscrollbar.common.activetabaccesskey   "e">
+<!ENTITY contentscrollbar.common.activetabtooltip   "">
+
+<!ENTITY contentscrollbar.common.optionsmenulabel   "Options">
+<!ENTITY contentscrollbar.common.optionsaccesskey   "o">
+<!ENTITY contentscrollbar.common.optionstooltip   "">
+
+<!ENTITY contentscrollbar.options.lblstatus   "Markers Visibility">
+<!ENTITY contentscrollbar.options.statusenable   "Enabled">
+<!ENTITY contentscrollbar.options.statusdisable   "Disabled">
+<!ENTITY contentscrollbar.options.statusminimize   "Minimized">
+
+<!ENTITY contentscrollbar.options.lblautoenabledonnewtab   "Always show markers on new tab">
+
+<!ENTITY contentscrollbar.options.lbltextlength   "Show on markers">
+<!ENTITY contentscrollbar.options.textlenentiretext   "Entire Text">
+<!ENTITY contentscrollbar.options.textlenthreewords   "First Three Words">
+<!ENTITY contentscrollbar.options.textlentenchars   "First Ten Characters">
+
+<!ENTITY contentscrollbar.options.lblmarkercolor   "Background Color">
+<!ENTITY contentscrollbar.options.tooltipmarkercolor   "Click to select a new color">
+<!ENTITY contentscrollbar.options.lblfontcolor   "Font Color">
+<!ENTITY contentscrollbar.options.tooltipfontcolor   "Click to select a new color">

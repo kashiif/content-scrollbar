@@ -1,0 +1,3 @@
+<!-- Following strings are not displayed on UI. These are used for local specifc pages on AMO website -->
+
+<!ENTITY contentscrollbar.shortdesc	"Easily navigate through the long pages. This extension will generate clickable markers for all the headings of a page and places them proportionately on the scrollbar. This extension is a port of Chrome&quot;s &quot;Scrollbar of Contents&quot; to Firefox.">

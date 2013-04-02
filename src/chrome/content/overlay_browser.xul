@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<!DOCTYPE overlay SYSTEM "chrome://content-scrollbar/locale/contentscrollbar.dtd">
+<overlay id="content-scrollbar-overlay"
+    xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+	
+    <broadcasterset>
+      <broadcaster id="contentscrollbar-broadcaster" />
+    </broadcasterset>
+
+
+    <!-- Firefox Toolbar Icon -->
+    <toolbarpalette id="BrowserToolbarPalette">
+        <toolbarbutton id="contentscrollbar-toolbar-btnmain" type="button" 
+            oncommand="contentScrollbar.handleToolbarButtonClick(event);"
+            class="toolbarbutton-1 chromeclass-toolbar-additional"
+            image="chrome://content-scrollbar/skin/csmoz-icon24.png"
+            observes="contentscrollbar-broadcaster" >
+            <!--
+            <menupopup>
+                <menuitem id="contentscrollbar-toolbar-btnactivetab" 
+                          label="&contentscrollbar.common.activetabmenulabel;"
+                          accesskey="&contentscrollbar.common.activetabaccesskey;"
+                          tooltiptext="&contentscrollbar.common.activetabtooltip;" />
+                <menuitem id="contentscrollbar-toolbar-btndefaultstatus" 
+                          label="&contentscrollbar.common.btndefaultstatuslabel;"
+                          accesskey="&contentscrollbar.common.btndefaultstatusaccesskey;"
+                          tooltiptext="&contentscrollbar.common.btndefaultstatustooltip;" />
+                <menuseparator />
+                <menuitem id="contentscrollbar-toolbar-btnoptions" 
+                          hidden="true"
+                          label="&contentscrollbar.common.optionsmenulabel;"
+                          accesskey="&contentscrollbar.common.optionsaccesskey;"
+                          tooltiptext="&contentscrollbar.common.optionstooltip;" />
+            </menupopup>
+            -->
+        </toolbarbutton>
+    </toolbarpalette>
+
+
+	<script type="application/x-javascript" src="chrome://content-scrollbar/content/contentscrollbar.js"></script>
+		
+</overlay>

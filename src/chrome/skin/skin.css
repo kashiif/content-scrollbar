@@ -1,0 +1,22 @@
+@import url('chrome://global/skin/');
+
+.colorpicker {
+  -moz-binding: url('chrome://content-scrollbar/content/colorpicker/colorpicker.xml#colorpicker-button');
+  -moz-appearance: none;
+  margin: 3px;
+  min-width: 25px;
+  width: 25px;
+  height: 20px;
+  border: 0px solid;
+  outline: 1px solid;
+}
+
+grid > rows > * {
+    margin-top: 0.6em;
+}
+
+grid rows row>label {
+    width: 5em;
+    min-width: 9em;
+    padding-top:.5em;
+}

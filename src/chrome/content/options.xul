@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://content-scrollbar/skin/skin.css" type="text/css"?>
+
+<!DOCTYPE prefwindow SYSTEM "chrome://content-scrollbar/locale/contentscrollbar.dtd">
+<prefwindow id="CopyPureTextPreferences"
+        title="&contentscrollbar.options.windowtitle;"
+        xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+  <prefpane>
+    <preferences>
+      <preference id="pref.headings"  name="extensions.contentscrollbar.headings" type="string" />
+      <preference id="pref.textlength"      name="extensions.contentscrollbar.textlength" type="string" />
+      <preference id="pref.status"  name="extensions.contentscrollbar.status" type="string" />
+      <preference id="pref.autoenabledonnewtab"  name="extensions.contentscrollbar.autoenabledonnewtab" type="bool" />
+      <preference id="pref.backgroundcolor"  name="extensions.contentscrollbar.backgroundcolor" type="string" />
+      <preference id="pref.fontcolor"  name="extensions.contentscrollbar.color" type="string" />
+    </preferences>
+
+	<groupbox>
+    <grid>
+      <columns>
+        <column flex="1" />
+        <column flex="1" />
+      </columns>
+      <rows>
+        <checkbox label="&contentscrollbar.options.lblautoenabledonnewtab;" preference="pref.autoenabledonnewtab"/>
+        <hbox flex="1" align="center">
+          <checkbox id="contentscrollbar-chkh1" label="h1" flex="1"/>
+          <checkbox id="contentscrollbar-chkh2" label="h2" flex="1"/>
+          <checkbox id="contentscrollbar-chkh3" label="h3" flex="1"/>
+        </hbox>
+        <hbox flex="1" align="center">
+          <checkbox id="contentscrollbar-chkh4" label="h4" flex="1"/>
+          <checkbox id="contentscrollbar-chkh5" label="h5" flex="1"/>
+          <checkbox id="contentscrollbar-chkh6" label="h6" flex="1"/>
+        </hbox>
+        <textbox id="contentscrollbar-txtheadings" hidden="true" preference="pref.headings"/>
+        <row>
+          <label value="&contentscrollbar.options.lblstatus;" control="contentscrollbar-ddlstatus"/>
+          <menulist id="contentscrollbar-ddlstatus" preference="pref.status">
+            <menupopup>
+              <menuitem label="&contentscrollbar.options.statusenable;" value="enabled"/>
+              <menuitem label="&contentscrollbar.options.statusminimize;" value="minimized"/>
+              <menuitem label="&contentscrollbar.options.statusdisable;" value="disabled"/>
+            </menupopup>
+          </menulist>
+        </row>
+        <row>
+          <label value="&contentscrollbar.options.lbltextlength;" control="contentscrollbar-ddltextlength"/>
+          <menulist id="contentscrollbar-ddltextlength" preference="pref.textlength">
+            <menupopup>
+              <menuitem label="&contentscrollbar.options.textlenentiretext;" value="entireText"/>
+              <menuitem label="&contentscrollbar.options.textlenthreewords;" value="firstThreeWords"/>
+              <menuitem label="&contentscrollbar.options.textlentenchars;" value="firstTenCharacters"/>
+            </menupopup>
+          </menulist>
+        </row>
+        <row>
+          <label value="&contentscrollbar.options.lblmarkercolor;" control="contentscrollbar-btnmarkercolor" />
+          <button id="contentscrollbar-btnmarkercolor" class="colorpicker" tooltiptext="&contentscrollbar.options.tooltipmarkercolor;"/>
+          <textbox id="contentscrollbar-txtmarkercolor" hidden="true" preference="pref.backgroundcolor"/>
+        </row>
+        <row>
+          <label value="&contentscrollbar.options.lblfontcolor;" control="contentscrollbar-btnfontcolor"/>
+          <button id="contentscrollbar-btnfontcolor" class="colorpicker" tooltiptext="&contentscrollbar.options.tooltipfontcolor;"/>
+          <textbox id="contentscrollbar-txtfontcolor" hidden="true" preference="pref.fontcolor"/>
+        </row>
+      </rows>
+    </grid>
+	</groupbox>   
+  </prefpane>
+  <script type="application/x-javascript" src="options.js"/>
+
+</prefwindow>

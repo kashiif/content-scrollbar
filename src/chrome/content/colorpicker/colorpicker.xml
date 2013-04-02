@@ -1,0 +1,125 @@
+<?xml version="1.0"?>
+<!-- Based off Mozilla's colorpicker bindings: chrome://global/content/bindings/colorpicker.xml -->
+<bindings id="colorpickerBindings"
+   xmlns="http://www.mozilla.org/xbl"
+   xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+   xmlns:xbl="http://www.mozilla.org/xbl">
+  <binding id="colorpicker-button">
+    <resources>
+      <stylesheet src="chrome://global/skin/colorpicker.css"/>
+    </resources>
+    
+    <content>
+      <xul:hbox class="colorpicker-button-colorbox" anonid="colorbox" flex="1" xbl:inherits="disabled"/>
+
+      <!--xul:popupset>
+        <xul:popup class="colorpicker-button-menupopup" anonid="colorpopup"
+                   onmousedown="event.stopPropagation()"
+                   onpopupshowing="this._colorPicker.onPopupShowing()"
+                   onpopuphiding="this._colorPicker.onPopupHiding()">
+
+           <xul:colorpicker xbl:inherits="palettename,disabled" allowevents="true" anonid="colorpicker"/>
+         </xul:popup>
+       </xul:popupset-->
+    </content>
+    
+    <implementation implements="nsIAccessibleProvider, nsIDOMXULControlElement">
+      <property name="accessible">
+        <getter>
+          <![CDATA[
+            var accService = Components.classes["@mozilla.org/accessibilityService;1"].getService(Components.interfaces.nsIAccessibilityService);
+            return accService.createXULColorPickerAccessible(this);
+          ]]>
+        </getter>
+
+      </property>
+    
+      <property name="color">
+        <getter><![CDATA[
+          return this.getAttribute("color");
+        ]]></getter>
+        <setter><![CDATA[
+          this.mColorBox.setAttribute("style", "background-color: " + val);
+          this.setAttribute("color", val);
+          return val;
+        ]]></setter>
+      </property>
+
+      <method name="initialize">
+        <body><![CDATA[
+          this.mColorBox = document.getAnonymousElementByAttribute(this, "anonid", "colorbox");
+        ]]></body>
+      </method>
+      
+      <method name="_fireEvent">
+        <parameter name="aTarget"/>
+        <parameter name="aEventName"/>
+        <body>
+        <![CDATA[
+          try {
+            var event = document.createEvent("Events");
+            event.initEvent(aEventName, true, true);
+            var cancel = !aTarget.dispatchEvent(event);
+            if (aTarget.hasAttribute("on" + aEventName)) {
+              var fn = new Function ("event", aTarget.getAttribute("on" + aEventName));
+              var rv = fn.call(aTarget, event);
+              if (rv == false)
+                cancel = true;
+            }
+            return !cancel;  
+          }
+          catch (e) { 
+            dump(e);
+          }
+          return false;
+        ]]>
+        </body>
+      </method>
+
+      <method name="showPopup">
+        <body><![CDATA[
+          var newcolor = {elemCurrColor:this.color, cancel:false};
+          this.ownerDocument.defaultView.openDialog('chrome://content-scrollbar/content/colorpicker/colorpicker.xul', '_blank', 'chrome, close, titlebar, modal', '', newcolor);
+          if (newcolor.cancel || newcolor.elemCurrColor == "")
+            return;
+          this.color = newcolor.elemCurrColor;
+          this._fireEvent(this, "change");
+        ]]></body>
+      </method>
+
+      <constructor><![CDATA[
+        this.initialize();
+      ]]></constructor>
+      
+    </implementation>
+
+    <handlers>
+      <handler event="keydown"><![CDATA[
+        if (this.disabled)
+          return;
+        if (event.keyCode == 32)
+          this.showPopup();
+      ]]></handler>
+
+      <handler event="click"><![CDATA[
+        if (this.disabled)
+          return;
+        this.showPopup();
+      ]]></handler>
+    </handlers>
+  </binding>
+
+  <binding id="colorpickertile">
+    <implementation implements="nsIAccessibleProvider">
+      <property name="accessibleType" readonly="true">
+        <getter>
+          <![CDATA[
+            return Components.interfaces.nsIAccessibleProvider.XULColorPickerTile;
+          ]]>
+        </getter>
+      </property>
+    </implementation>
+  </binding>
+
+</bindings>
+

@@ -1,0 +1,47 @@
+/* Must remain at index 0 */
+.kashiif_soc_marker {
+	position: fixed;
+	display: block;
+	width: auto;
+	min-width: 5px;
+	max-width: 280px;
+	min-height: 16px;
+	right: 6px;
+	margin: 0px;
+	padding: 2px 6px 2px 6px;
+	color: #f1f1f1;
+	font-family: arial, sans-serif;
+	font-size: 11px;
+	/*
+	line-height: 1.5em;
+	*/
+	text-transform: capitalize;
+	/*background: rgba( 28, 28, 28, 0.88 );*/
+	/*background: rgba( 232,143,48, 0.88 );*/
+	-moz-border-radius: 4px;
+	/*-moz-box-shadow: 0px 0px 4px rgba( 232,143,48, 0.8 );*/
+	cursor: pointer;
+	-moz-transition-property: background-color, fill, visibility,opacity;
+	-moz-transition-duration: 1s;
+	/*-moz-transition-timing-function: ease-out;*/	
+}
+
+.kashiif_soc_marker:hover {
+  -moz-transition-property: background-color, fill;
+  -moz-transition-duration: 1s;
+  /*-moz-transition-timing-function1: ease-out;*/
+}
+
+.kashiif_soc_marker_arrow {
+	position: absolute;
+	top: 5px;
+	right: -6px;
+	stroke-width:1;	
+}
+
+.kashiif_soc_marker_span {
+}
+
+.kashiif_soc_marker:hover span {
+	display:block;
+}
