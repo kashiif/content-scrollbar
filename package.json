@@ -1,0 +1,35 @@
+{
+  "name": "content-scrollbar",
+  "title": "Content Scrollbar",
+  "description": "Firefox extension to easily navigate through the long pages.",
+  "version": "0.2.0",
+  "homepage": "http://www.kashiif.com/firefox-extensions/content-scrollbar/",
+  "author": {
+    "name": "Kashif Iqbal Khan",
+    "email": "kashiif@gmail.com",
+    "url": "www.kashiif.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kashiif/content-scrollbar.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kashiif/content-scrollbar/issues"
+  },
+  "licenses": [
+    {
+      "type": "none",
+      "url": "/blob/master/LICENSE-none"
+    }
+  ],
+  "dependencies": {},
+  "keywords": [],
+  "devDependencies": {
+    "grunt": "0.4.1",
+    "grunt-contrib-copy": ">=0.4.0",
+    "grunt-string-replace": "~0.2.3",
+    "grunt-contrib-compress": "0.4.1",
+    "grunt-bump": "0.0.2",
+    "grunt-contrib-clean": "~0.4.0"
+  }
+}

@@ -19,17 +19,17 @@
 	/*background: rgba( 28, 28, 28, 0.88 );*/
 	/*background: rgba( 232,143,48, 0.88 );*/
 	-moz-border-radius: 4px;
+	border-radius: 4px;
 	/*-moz-box-shadow: 0px 0px 4px rgba( 232,143,48, 0.8 );*/
 	cursor: pointer;
 	-moz-transition-property: background-color, fill, visibility,opacity;
+	transition-property: background-color, fill, visibility,opacity;
 	-moz-transition-duration: 1s;
+	transition-duration: 1s;
 	/*-moz-transition-timing-function: ease-out;*/	
 }
 
 .kashiif_soc_marker:hover {
-  -moz-transition-property: background-color, fill;
-  -moz-transition-duration: 1s;
-  /*-moz-transition-timing-function1: ease-out;*/
 }
 
 .kashiif_soc_marker_arrow {
@@ -45,3 +45,13 @@
 .kashiif_soc_marker:hover span {
 	display:block;
 }
+
+.kashiif_soc_marker:hover span {
+	display:block;
+}
+
+/*
+.kashiif_soc_marker:hover ~ .kashiif_soc_marker span, .kashiif_soc_marker:not(:hover) span ~ .kashiif_soc_marker:hover {
+	display:block;
+}
+*/

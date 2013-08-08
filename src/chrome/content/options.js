@@ -14,15 +14,14 @@ var contentScrollbarOptions = {
 			chkHeadings.push(document.getElementById('contentscrollbar-chkh' + i));
 		}
 
-		for (var i=0 ; i<headings.length; i++) {
-			var index = parseInt(headings[i].charAt(1));
+		for (i=0 ; i<headings.length; i++) {
+			var index = (headings[i].charAt(1)) | 0;
 			chkHeadings[index].checked = true;
 		}
 			
-		for (var i=1 ; i<7; i++) {
+		for (i=0 ; i<headings.length; i++) {
 			chkHeadings[i].addEventListener('click', contentScrollbarOptions._handleHeadingChanged, false);
 		}
-
 	},
 
 	_processColorField: function(colorFieldId, txtBoxId) {
@@ -46,18 +45,17 @@ var contentScrollbarOptions = {
 
 	_handleColorChanged: function(evt) {
 		var colorField = evt.target;
-		Components.utils.reportError(evt.target.id);
 
 		var element = colorField.nextElementSibling;
 		var rgb = contentScrollbarOptions.convertHEXtoRGB(colorField.color.substring(1));
 		element.value = rgb.join(',');
-	    var evt = document.createEvent('Events');
-	    evt.initEvent('change', true, true);
-	    element.dispatchEvent(evt);
+
+    var customEvt = document.createEvent('Events');
+    customEvt.initEvent('change', true, true);
+    element.dispatchEvent(customEvt);
 	},
 
 	_handleHeadingChanged: function(evt) {
-		Components.utils.reportError(evt.target.id);
 	},
 
 	convertHEXtoRGB: function(hexCode) {		

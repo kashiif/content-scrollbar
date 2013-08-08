@@ -13,6 +13,7 @@
       <preference id="pref.autoenabledonnewtab"  name="extensions.contentscrollbar.autoenabledonnewtab" type="bool" />
       <preference id="pref.backgroundcolor"  name="extensions.contentscrollbar.backgroundcolor" type="string" />
       <preference id="pref.fontcolor"  name="extensions.contentscrollbar.color" type="string" />
+      <preference id="pref.animatedscroll"  name="extensions.contentscrollbar.animatedscroll" type="bool" />
     </preferences>
 
 	<groupbox>
@@ -22,6 +23,7 @@
         <column flex="1" />
       </columns>
       <rows>
+        <checkbox label="&contentscrollbar.options.lblanimatedscroll;" preference="pref.animatedscroll"/>
         <checkbox label="&contentscrollbar.options.lblautoenabledonnewtab;" preference="pref.autoenabledonnewtab"/>
         <hbox flex="1" align="center">
           <checkbox id="contentscrollbar-chkh1" label="h1" flex="1"/>

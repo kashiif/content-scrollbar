@@ -19,6 +19,8 @@
 
 <!ENTITY contentscrollbar.options.lblautoenabledonnewtab   "Always show markers on new tab">
 
+<!ENTITY contentscrollbar.options.lblanimatedscroll   "Animate scroll when a marker is clicked">
+
 <!ENTITY contentscrollbar.options.lbltextlength   "Show on markers">
 <!ENTITY contentscrollbar.options.textlenentiretext   "Entire Text">
 <!ENTITY contentscrollbar.options.textlenthreewords   "First Three Words">

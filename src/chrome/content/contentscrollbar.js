@@ -10,6 +10,7 @@ var contentScrollbar = {
 	_resevervedYPositionLength: 28,
 	_resizeTimeout: null,
 	_g:null,
+  _appId: null,
 
 	init: function(evt) {
 		window.removeEventListener('load', contentScrollbar.init);
@@ -28,6 +29,10 @@ var contentScrollbar = {
 			this._g = gBrowser;
 		}
 
+    var appInfo = Components.classes["@mozilla.org/xre/app-info;1"]
+                            .getService(Components.interfaces.nsIXULAppInfo);
+    this._appId = appInfo.ID;
+                            
 		this._g.addEventListener('load', this.handleContentDocLoad, true);
 		this._g.tabContainer.addEventListener('TabSelect', this.handleTabSelected, false);
 
@@ -42,6 +47,11 @@ var contentScrollbar = {
 						        .createBundle('chrome://content-scrollbar/locale/contentscrollbar.properties');
 
 	},
+  
+  _isSeaMonkey: function() {
+    const SEAMONKEY_APP_ID = "{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}";
+    return (this._appId == SEAMONKEY_APP_ID);
+  },
 
 	observe: function(subject, topic, data){
 		if (topic != 'nsPref:changed'){
@@ -81,14 +91,20 @@ var contentScrollbar = {
   		//contentWin is the XUL element of the browser that's just been selected
 		var contentWin = contentScrollbar._g.selectedBrowser;
 		
+    var isSeamonkey = this._isSeaMonkey();
+    
 		if (! this._isValidScheme(contentWin.contentDocument.location.href)) {
-			brdcaster.setAttribute('disabled', true);
+			if (isSeamonkey) {
+        brdcaster.setAttribute('disabled', true);
+      }
 			brdcaster.setAttribute('tooltiptext', this._stringBundle.GetStringFromName('unavailabletooltip'));
 			// Seamonkey greys out toolbar button by putting images dynamically, so grayscale the button
 			brdcaster.style.filter = filter;
 			return;
 		}
-		brdcaster.setAttribute('disabled', false);
+		if (isSeamonkey) {
+      brdcaster.setAttribute('disabled', false);
+    }
 
 		var keyLabel = 'disabledlabel';
 		var keyTooltip = 'disabledtooltip';
@@ -335,6 +351,13 @@ var contentScrollbar = {
 			var textLength = contentScrollbar._prefService.getCharPref('textlength');
 			var markerBackgroundColor = contentScrollbar._getBackGroundColor();
 			
+      var container = doc.getElementById('kashiif_soc_marker_container');
+
+      if (!container) {
+        container = doc.createElement('div');
+        container.setAttribute('id', 'kashiif_soc_marker_container');
+      }
+      
 			for( var i = 0; i < headings.length; i++ ) {
 				var headingText = headings[i].textContent.replace(/^\s*/, '').replace(/\s*$/, '').replace(/\s{2,}/, ' ');
 				
@@ -406,9 +429,11 @@ var contentScrollbar = {
 					  Add new marker to document
 					------------------------------------------------*/
 					
-					doc.body.appendChild( newMarker );
+					container.appendChild( newMarker );
 				}
 			}
+      
+      doc.body.appendChild(container);
 		}
 		
 		this.create = function(doc, markerID) {
@@ -639,8 +664,14 @@ var contentScrollbar = {
 	},
 
 	handleMarkerClicked: function(evt) {
-		//window.alert('chrome-code: ' + evt.target.getAttribute('data-newTargetY'));
-		this.clientWindowScroller.beginScroll(evt.target.getAttribute('data-newTargetY'), evt.target.ownerDocument.defaultView);
+    var scrollTarget = evt.target.getAttribute('data-newTargetY'),
+        clientWin = evt.target.ownerDocument.defaultView;
+    if (this._prefService.getBoolPref('animatedscroll')) {
+      this.clientWindowScroller.beginScroll(scrollTarget, clientWin);
+    }
+    else {
+      clientWin.scrollBy(0,scrollTarget - clientWin.pageYOffset);
+    }
 	},
 
 
@@ -650,32 +681,31 @@ var contentScrollbar = {
 	  activeScrollTarget: null,
 	  activeTimeout: null,
 	  beginScroll: function(scrollTarget, clientWin) {
-		if (this.activeScrollTarget != scrollTarget) {
-			window.clearTimeout(this.activeTimeout);
-		  	this.activeScrollTarget = scrollTarget;
-		}
-		this.animatedScroll(scrollTarget, this.step, clientWin);
-	  },
-	  animatedScroll: function (scrollTarget, theStep, clientWin) {
-		var t = null;
-	    var scrollAmount = scrollTarget - clientWin.pageYOffset;
-		
-		if (scrollAmount>0) {
-			if (clientWin.pageYOffset + clientWin.innerHeight >= clientWin.document.documentElement.scrollHeight) {
-				// scroll has reached at its maximum value. No More Scrolling possible
-				this.activeTimeout = t;
-				return;
-			}
-		}
+      if (this.activeScrollTarget != scrollTarget) {
+        window.clearTimeout(this.activeTimeout);
+          this.activeScrollTarget = scrollTarget;
+      }
+      this.animatedScroll(scrollTarget, this.step, clientWin);
+    },
+    animatedScroll: function (scrollTarget, theStep, clientWin) {
+      var t = null;
+      var scrollAmount = scrollTarget - clientWin.pageYOffset;
+      
+      if (scrollAmount>0) {
+        if (clientWin.pageYOffset + clientWin.innerHeight >= clientWin.document.documentElement.scrollHeight) {
+          // scroll has reached at its maximum value. No More Scrolling possible
+          this.activeTimeout = t;
+          return;
+        }
+      }
 
-		
-	    var scrollAmountAbs = Math.abs(scrollAmount);
+			var scrollAmountAbs = Math.abs(scrollAmount);
 	    if (scrollAmountAbs>theStep) {
-		  scrollAmount = (scrollAmount<0?-theStep:theStep);
-		  t = window.setTimeout( function(e) { contentScrollbar.clientWindowScroller.animatedScroll(scrollTarget,theStep+10, clientWin); },this.interval);
+        scrollAmount = (scrollAmount<0?-theStep:theStep);
+        t = window.setTimeout( function(e) { contentScrollbar.clientWindowScroller.animatedScroll(scrollTarget,theStep+10, clientWin); },this.interval);
 	    }
 	    clientWin.scrollBy(0,scrollAmount);
-		this.activeTimeout = t;
+      this.activeTimeout = t;
 	  }
 }	
 	

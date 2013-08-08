@@ -5,17 +5,19 @@
     xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 	
     <broadcasterset>
-      <broadcaster id="contentscrollbar-broadcaster" />
+      <broadcaster id="contentscrollbar-broadcaster" 
+                   class="toolbarbutton-1 chromeclass-toolbar-additional"/>
     </broadcasterset>
 
 
     <!-- Firefox Toolbar Icon -->
     <toolbarpalette id="BrowserToolbarPalette">
-        <toolbarbutton id="contentscrollbar-toolbar-btnmain" type="button" 
+        <toolbarbutton id="contentscrollbar-toolbar-btnmain" 
             oncommand="contentScrollbar.handleToolbarButtonClick(event);"
             class="toolbarbutton-1 chromeclass-toolbar-additional"
-            image="chrome://content-scrollbar/skin/csmoz-icon24.png"
+            image="chrome://content-scrollbar/skin/csmoz-icon16.png"
             observes="contentscrollbar-broadcaster" >
+            
             <!--
             <menupopup>
                 <menuitem id="contentscrollbar-toolbar-btnactivetab" 
