@@ -2,7 +2,7 @@
   "name": "content-scrollbar",
   "title": "Content Scrollbar",
   "description": "Firefox extension to easily navigate through the long pages.",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "homepage": "http://www.kashiif.com/firefox-extensions/content-scrollbar/",
   "author": {
     "name": "Kashif Iqbal Khan",

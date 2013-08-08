@@ -254,12 +254,10 @@ var contentScrollbar = {
 	},
 	
 	_removeExistingMarkers: function(doc) {
-		var nodeList = doc.body.querySelectorAll('.kashiif_soc_marker');
+    var body  = doc.body,
+        container = doc.getElementById('kashiif_soc_marker_container');
 		
-		for (var i=0 ; i<nodeList.length; i++) {
-			var c = doc.getElementById(nodeList[i].id);
-			if (c) { doc.body.removeChild(c); }
-		}	
+		if (container) { body.removeChild(container); }
 	},
 	
 	_getBackGroundColor: function(factor) {
@@ -353,7 +351,10 @@ var contentScrollbar = {
 			
       var container = doc.getElementById('kashiif_soc_marker_container');
 
-      if (!container) {
+      if (container) {
+        doc.body.removeChild(container);
+      }
+      else {
         container = doc.createElement('div');
         container.setAttribute('id', 'kashiif_soc_marker_container');
       }
